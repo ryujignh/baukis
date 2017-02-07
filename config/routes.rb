@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :staff do
     root 'top#index'
+    get 'login' => 'sessions#new', as: :login
+    put 'session' => 'sessions#create', as: :session
+    delete 'logout' => 'sessions#destroy'
   end
 
   namespace :admin do
