@@ -3,6 +3,7 @@ class CreateStaffMembers < ActiveRecord::Migration
     create_table :staff_members do |t|
     	t.string :email, null: false
     	t.string :email_for_index, null: false
+        t.string :family_name, null: false
     	t.string :given_name, null: false
     	t.string :family_name_kana, null: false
     	t.string :given_name_kana, bull: false

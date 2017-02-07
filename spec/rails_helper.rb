@@ -17,7 +17,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
-    FactoryGril.reload
+    FactoryGirl.reload
   end
 
   config.infer_spec_type_from_file_location!
