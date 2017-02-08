@@ -18,9 +18,9 @@ describe Staff::Authenticator do
       expect(Staff::Authenticator.new(m).authenticate(nil)).to be_falsey
     end
 
-    example 'Should return false suspended' do
+    example 'Should return true even if suspended' do
       m = build(:staff_member, suspended: true)
-      expect(Staff::Authenticator.new(m).authenticate('pw')).to be_falsey
+      expect(Staff::Authenticator.new(m).authenticate('pw')).to be_truthy
     end
 
     example 'Should return false if not yet started' do

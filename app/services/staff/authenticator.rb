@@ -1,4 +1,5 @@
 class Staff::Authenticator
+
   def initialize(staff_member)
     @staff_member = staff_member
   end
@@ -11,7 +12,6 @@ class Staff::Authenticator
     # なお終了日が設定されていあくて
     # 渡されたパスワードが正しければtrueを返す
     @staff_member &&
-      !@staff_member.suspended? &&
       @staff_member.hashed_password &&
       @staff_member.start_date <= Date.today &&
       (@staff_member.end_date.nil? || @staff_member.end_date > Date.today) &&
