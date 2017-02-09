@@ -1,4 +1,4 @@
 Administrator.create!(
-	email: 'hanako@example.com',
-	password: 'foobar',
+	email: 'admin@example.com',
+	password: 'admin',
 	)

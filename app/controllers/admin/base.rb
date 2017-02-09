@@ -5,7 +5,7 @@ class Admin::Base < ApplicationController
 	def current_administrator
 		if session[:administrator_id]
 			@current_administrator ||=
-				staffMember.find_by(id: session[:administrator_id])
+				StaffMember.find_by(id: session[:administrator_id])
 		end
 	end
 

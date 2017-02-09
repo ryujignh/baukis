@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     get 'login' => 'sessions#new', as: :login
     post 'session' => 'sessions#create', as: :session
     delete 'session' => 'sessions#destroy'
+    resources :staff_members
+    # indexだとadmin/staff_membersでアクセス出来る
+    # resources :staff_members, path: 'staff'にするとadmin/staffにアクセスできる
   end
 
   namespace :customer do
