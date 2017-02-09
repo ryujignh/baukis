@@ -1,16 +1,20 @@
+# 単数リソース => データベースレコードと結びついたリソースのうち、単数のもの。
+# 職員 -> アカウントは一つしかないので、単数リソース
+
 Rails.application.routes.draw do
-  namespace :staff do
+  namespace :staff, path: '' do
     root 'top#index'
     get 'login' => 'sessions#new', as: :login
-    post 'session' => 'sessions#create', as: :session
-    delete 'session' => 'sessions#destroy'
+    resource :session, only: [ :create, :destroy ]
+    # Singular resource
+    # Baukisには職員自信が自分のアカウントを登録、削除する機能はないので、除外する
+    resource :account, except: [ :new, :create, :destroy　]
   end
 
   namespace :admin do
     root 'top#index'
     get 'login' => 'sessions#new', as: :login
-    post 'session' => 'sessions#create', as: :session
-    delete 'session' => 'sessions#destroy'
+    resource :session, only: [ :create, :destroy ]
     resources :staff_members
     # indexだとadmin/staff_membersでアクセス出来る
     # resources :staff_members, path: 'staff'にするとadmin/staffにアクセスできる
