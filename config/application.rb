@@ -27,5 +27,6 @@ module Baukis
       g.controller_specs false
       g.view_specs false
     end
+
   end
 end
