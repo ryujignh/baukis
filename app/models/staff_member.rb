@@ -11,4 +11,11 @@ class StaffMember < ActiveRecord::Base
     end
   end
 
+  def active?
+    # Not suspend AND Start date is prior to today AND
+    # end_date is nil OR end_date is more than Today
+    !suspended && start_date <= Date.today &&
+      (end_date.nil? || end_date > Date.today)
+  end
+
 end
