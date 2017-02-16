@@ -1,4 +1,7 @@
 class Admin::Base < ApplicationController
+  # Basically, almost every admin related actions require authorization,
+  # so put the callback in the base class so other subclasses can inherite
+  before_action :authorize
 
 	private
 
@@ -10,5 +13,12 @@ class Admin::Base < ApplicationController
 	end
 
 	helper_method :current_administrator
+
+  def authorize
+    unless current_administrator
+      flash.notice = '管理者としてログインしてください。'
+      redirect_to :admin_login
+    end
+  end
 
 end
