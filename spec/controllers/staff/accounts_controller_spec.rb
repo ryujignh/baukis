@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Staff::AccountsController do
   describe '#update' do
@@ -9,6 +9,8 @@ describe Staff::AccountsController do
     # テストの場合、session idを定義してあげる必要がある。
     before do
       session[:staff_member_id] = staff_member.id
+      # 最終アクセス時刻を1秒前にセットする
+      session[:last_access_time] = 1.second.ago
     end
     example 'email属性を変更する' do
       params_hash.merge!(email: 'test@example.com')

@@ -1,7 +1,17 @@
-require 'spec_helper'
+require 'rails_helper'
+
+describe Admin::StaffMembersController, 'ログイン前' do
+  it_behaves_like 'a protected admin controller'
+end
 
 describe Admin::StaffMembersController do
   let(:params_hash) { attributes_for(:staff_member) }
+  let(:administrator) { create(:administrator) }
+
+  # Set test admin account already logged in
+  before do
+    session[:administrator_id] = administrator.id
+  end
 
   describe '#create' do
     example '職員一覧ページにリダイレクト' do
@@ -42,6 +52,5 @@ describe Admin::StaffMembersController do
         patch :update, id: staff_member.id, staff_member: params_hash
       }.not_to change { staff_member.hashed_password.to_s }
     end
-
   end
 end

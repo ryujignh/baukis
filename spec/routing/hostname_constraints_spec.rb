@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Routing' do
   example 'Staff top page' do

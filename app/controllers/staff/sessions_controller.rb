@@ -21,6 +21,8 @@ class Staff::SessionsController < Staff::Base
         render action: 'new'
       else
         session[:staff_member_id] = staff_member.id
+        # for session time out
+        session[:last_access_time] = Time.current
         flash.notice = 'You have been logged in'
         redirect_to :staff_root
       end
