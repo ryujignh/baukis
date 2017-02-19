@@ -24,6 +24,7 @@ class Admin::SessionsController < Admin::Base
       # サスペンドされていなければ、ログインしてルート画面に移動する
       else
         session[:administrator_id] = administrator.id
+        session[:last_access_time] = Time.current
         flash.notice = 'You have been logged in'
         redirect_to :admin_root
       end

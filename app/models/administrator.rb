@@ -12,4 +12,8 @@ class Administrator < ActiveRecord::Base
     end
   end
 
+  def active?
+    !suspended?
+  end
+
 end
