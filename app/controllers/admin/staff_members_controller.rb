@@ -1,7 +1,10 @@
 class Admin::StaffMembersController < Admin::Base
 
   def index
-    @staff_members = StaffMember.order(:family_name_kana, :given_name_kana)
+    @staff_members = StaffMember
+    @staff_members = @staff_members
+                      .order(:family_name_kana, :given_name_kana)
+                      .page(params[:page])
   end
 
   # updateで失敗した場合、URLを他のブラウザに貼り付けてアクセスするとshowへアクセスが走るので、リダイレクトする

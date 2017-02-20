@@ -1,3 +1,16 @@
+#####################################################################
+# t.string   | "email",             |                 | null: false
+# t.string   | "email_for_index",   |                 | null: false
+# t.string   | "family_name",       |                 | null: false
+# t.string   | "given_name",        |                 | null: false
+# t.string   | "family_name_kana",  |                 | null: false
+# t.string   | "given_name_kana"    |                 |
+# t.string   | "hashed_password"    |                 |
+# t.date     | "start_date",        |                 | null: false
+# t.date     | "end_date"           |                 |
+# t.boolean  | "suspended",         | default: false, | null: false
+#####################################################################
+
 class StaffMember < ActiveRecord::Base
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
 

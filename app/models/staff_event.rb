@@ -4,7 +4,6 @@
 # t.datetime | "created_at",      | null: false
 #########################################################
 
-
 class StaffEvent < ActiveRecord::Base
   self.inheritance_column = nil
 
