@@ -43,6 +43,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'nokogiri', '~> 1.6.1'
 gem 'rails-i18n', '~> 4.0.1'
 gem 'foreigner', '~> 1.6.1'
+gem 'kaminari', '~> 0.15.1'
 
 group :development, :test do
   gem 'pry', '0.10.3'

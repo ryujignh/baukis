@@ -1,3 +1,10 @@
+#########################################################
+# t.integer  | "staff_member_id", | null: false
+# t.string   | "type",            | null: false
+# t.datetime | "created_at",      | null: false
+#########################################################
+
+
 class StaffEvent < ActiveRecord::Base
   self.inheritance_column = nil
 
