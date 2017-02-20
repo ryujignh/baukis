@@ -47,6 +47,7 @@ gem 'kaminari', '~> 0.15.1'
 
 group :development, :test do
   gem 'pry', '0.10.3'
+  gem 'quiet_assets', '~> 1.0.2'
 end
 
 group	:test do
