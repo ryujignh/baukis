@@ -23,9 +23,15 @@ Rails.application.routes.draw do
       root 'top#index'
       get 'login' => 'sessions#new', as: :login
       resource :session, only: [ :create, :destroy ]
-      resources :staff_members
+      resources :staff_members do
       # indexだとadmin/staff_membersでアクセス出来る
       # resources :staff_members, path: 'staff'にするとadmin/staffにアクセスできる
+
+      # ある特定の職員のログイン・ログアウト操作記録の一覧
+      resources :staff_events, only: [ :index ]
+      end
+      # すべての職員のログイン・ログアウト操作記録の一覧
+      resources :staff_events, only: [ :index ]
     end
   end
 

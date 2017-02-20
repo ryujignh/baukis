@@ -28,8 +28,10 @@
         </td>
         <td class="actions">
         <!-- edit link to admin/staff/members/:id/edit -->
-        <!-- delete link to admin/staff/members/:id/ -->
           <%= link_to '編集', [ :edit, :admin, m] %> |
+        <!-- Same way as writing as admin_staff_member_staff_events(m) -->
+          <%= link_to 'Events', [ :admin, m, :staff_events] %> |
+        <!-- delete link to admin/staff/members/:id/ -->
           <%= link_to '削除', [:admin, m], method: :delete,
             data: { confirm: 'Are you sure?' } %>
         </td>
