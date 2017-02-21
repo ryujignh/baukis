@@ -30,6 +30,19 @@ class StaffMember < ActiveRecord::Base
   validates :family_name_kana, :given_name_kana, presence: true,
     format: { with: KATAKANA_REGEXP, allow_blank: true }
 
+  # 開始日は2000/1/1以降、かつ今日から１年以内
+  validates :start_date, presence: true, date: {
+    after_or_equal_to: Date.new(2000, 1, 1),
+    before: -> (obj) { 1.year.from_now.to_date },
+    allow_blank: true
+  }
+  # 終了日は開始日よりも後で、今日から一年以内、空でもOK
+  validates :end_date, date: {
+    after: :start_date,
+    before: -> (obj) { 1.year.from_now.to_date },
+    allow_blank: true
+  }
+
   def password=(raw_password)
     if raw_password.kind_of?(String)
       self.hashed_password = BCrypt::Password.create(raw_password)
