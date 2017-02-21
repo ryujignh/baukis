@@ -44,6 +44,8 @@ gem 'nokogiri', '~> 1.6.1'
 gem 'rails-i18n', '~> 4.0.1'
 gem 'foreigner', '~> 1.6.1'
 gem 'kaminari', '~> 0.15.1'
+gem 'date_validator', '~> 0.7.0'
+gem 'email_validator', '~> 1.4.0'
 
 group :development, :test do
   gem 'pry', '0.10.3'
