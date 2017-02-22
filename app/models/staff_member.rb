@@ -26,11 +26,13 @@ class StaffMember < ActiveRecord::Base
   end
 
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+|z/
+  HUMAN_NAME_REGEXP = /\A[\p{han}\p{hiragana}\p{katakana}\u{30fc}\p{alpha}]+\z/
 
   # alow_blankで空入力の歳のエラーメッセージを重複しないようにする、presence: trueの
   # エラーメッセージを優先してあげる。
   validates :email, presence: true, email: { allow_blank: true }
-  validates :family_name, :given_name, presence: true
+  validates :family_name, :given_name, presence: true,
+    format: { with: HUMAN_NAME_REGEXP, allow_blank: true }
   validates :family_name_kana, :given_name_kana, presence: true,
     format: { with: KATAKANA_REGEXP, allow_blank: true }
 

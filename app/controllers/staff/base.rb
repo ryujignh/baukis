@@ -4,6 +4,7 @@ class Staff::Base < ApplicationController
   before_action :check_timeout
 
 	private
+
 	def current_staff_member
 		if session[:staff_member_id]
       # 変数にStaffMemberのオブジェクトを代入する
