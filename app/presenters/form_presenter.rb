@@ -34,7 +34,7 @@ class FormPresenter
     end
   end
 
-  def date_field_block(name, label_text, option = {})
+  def date_field_block(name, label_text, options = {})
     markup(:div, class: 'input-block') do |m|
       m << decorated_label(name, label_text, options)
       m << text_field(name, options)

@@ -8,7 +8,7 @@ module HtmlBuilder
           yield(doc)
         end
       else
-        yield(Doc)
+        yield(doc)
       end
     end
     root.to_html.html_safe
