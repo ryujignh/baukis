@@ -1,14 +1,14 @@
 #####################################################################
-# t.string   | "email",             |                 | null: false
-# t.string   | "email_for_index",   |                 | null: false
-# t.string   | "family_name",       |                 | null: false
-# t.string   | "given_name",        |                 | null: false
-# t.string   | "family_name_kana",  |                 | null: false
-# t.string   | "given_name_kana"    |                 |
-# t.string   | "hashed_password"    |                 |
-# t.date     | "start_date",        |                 | null: false
-# t.date     | "end_date"           |                 |
-# t.boolean  | "suspended",         | default: false, | null: false
+# String   | "email",             |                 | null: false
+# String   | "email_for_index",   |                 | null: false
+# String   | "family_name",       |                 | null: false
+# String   | "given_name",        |                 | null: false
+# String   | "family_name_kana",  |                 | null: false
+# String   | "given_name_kana"    |                 |
+# String   | "hashed_password"    |                 |
+# Date     | "start_date",        |                 | null: false
+# Date     | "end_date"           |                 |
+# Boolean  | "suspended",         | default: false, | null: false
 #####################################################################
 
 class StaffMember < ActiveRecord::Base

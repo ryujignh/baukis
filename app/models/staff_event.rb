@@ -1,7 +1,7 @@
 #########################################################
-# t.integer  | "staff_member_id", | null: false
-# t.string   | "type",            | null: false
-# t.datetime | "created_at",      | null: false
+# Integer  | "staff_member_id", | null: false
+# String   | "type",            | null: false
+# Datetime | "created_at",      | null: false
 #########################################################
 
 class StaffEvent < ActiveRecord::Base

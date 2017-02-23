@@ -1,8 +1,8 @@
 #####################################################################
-# t.string  | "email",          |                 | null: false
-# t.string  | "email_for_index",|                 | null: false
-# t.string  | "hashed_password" |                 |
-# t.boolean | "suspended",      | default: false, | null: false
+# String  | "email",          |                 | null: false
+# String  | "email_for_index",|                 | null: false
+# String  | "hashed_password" |                 |
+# Boolean | "suspended",      | default: false, | null: false
 #####################################################################
 
 class Administrator < ActiveRecord::Base
