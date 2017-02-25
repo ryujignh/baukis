@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       # Baukisには職員自信が自分のアカウントを登録、削除する機能はないので、除外する
       resource :account, except: [ :new, :create, :destroy　]
       resource :password, only: [ :show, :edit, :update ]
+      resources :customers
     end
   end
 
