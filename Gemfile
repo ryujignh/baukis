@@ -51,6 +51,7 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 group :development, :test do
   gem 'pry', '0.10.3'
   gem 'quiet_assets', '~> 1.0.2'
+  gem 'guard-rspec', require: false
 end
 
 group	:test do
