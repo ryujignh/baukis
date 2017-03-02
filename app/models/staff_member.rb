@@ -13,28 +13,18 @@
 
 class StaffMember < ActiveRecord::Base
   include StringNormalizer
+  include PersonalNameHolder
 
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
 
   before_validation do
     self.email            = normalize_as_email(email)
     self.email_for_index  = email.downcase if email
-    self.family_name      = normalize_as_name(family_name)
-    self.given_name       = normalize_as_name(given_name)
-    self.family_name_kana = normalize_as_furigana(family_name_kana)
-    self.given_name_kana  = normalize_as_furigana(given_name_kana)
   end
-
-  KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+|z/
-  HUMAN_NAME_REGEXP = /\A[\p{han}\p{hiragana}\p{katakana}\u{30fc}\p{alpha}]+\z/
 
   # alow_blankで空入力の歳のエラーメッセージを重複しないようにする、presence: trueの
   # エラーメッセージを優先してあげる。
   validates :email, presence: true, email: { allow_blank: true }
-  validates :family_name, :given_name, presence: true,
-    format: { with: HUMAN_NAME_REGEXP, allow_blank: true }
-  validates :family_name_kana, :given_name_kana, presence: true,
-    format: { with: KATAKANA_REGEXP, allow_blank: true }
 
   # 開始日は2000/1/1以降、かつ今日から１年以内
   validates :start_date, presence: true, date: {
@@ -71,5 +61,4 @@ class StaffMember < ActiveRecord::Base
     !suspended? && start_date <= Date.today &&
       (end_date.nil? || end_date > Date.today)
   end
-
 end

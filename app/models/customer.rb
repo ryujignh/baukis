@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+  include PersonalNameHolder
   # autosave: true or falseで親モデルが保存した時にhas...関連
   # 付けられているモデルを更新するか決められる。
   # 基本的に更新しないほうがいい（思いがけない処理をする場合があるので）
