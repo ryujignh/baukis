@@ -12,19 +12,10 @@
 #####################################################################
 
 class StaffMember < ActiveRecord::Base
-  include StringNormalizer
+  include EmailHolder
   include PersonalNameHolder
 
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
-
-  before_validation do
-    self.email            = normalize_as_email(email)
-    self.email_for_index  = email.downcase if email
-  end
-
-  # alow_blankで空入力の歳のエラーメッセージを重複しないようにする、presence: trueの
-  # エラーメッセージを優先してあげる。
-  validates :email, presence: true, email: { allow_blank: true }
 
   # 開始日は2000/1/1以降、かつ今日から１年以内
   validates :start_date, presence: true, date: {
@@ -38,14 +29,6 @@ class StaffMember < ActiveRecord::Base
     before: -> (obj) { 1.year.from_now.to_date },
     allow_blank: true
   }
-
-  validates :email_for_index, uniqueness: { allow_blank: true }
-  after_validation do
-    if errors.include?(:email_for_index)
-      errors.add(:email, :taken)
-      errors.delete(:email_for_index)
-    end
-  end
 
   def password=(raw_password)
     if raw_password.kind_of?(String)

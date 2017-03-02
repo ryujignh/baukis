@@ -6,10 +6,7 @@
 #####################################################################
 
 class Administrator < ActiveRecord::Base
-
-  before_validation do
-    self.email_for_index = email.downcase if email
-  end
+  include EmailHolder
 
   def password=(raw_password)
     if raw_password.kind_of?(String)
