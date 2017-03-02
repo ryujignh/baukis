@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
   include EmailHolder
+  include PasswordHolder
   include PersonalNameHolder
   # autosave: true or falseで親モデルが保存した時にhas...関連
   # 付けられているモデルを更新するか決められる。
@@ -14,11 +15,4 @@ class Customer < ActiveRecord::Base
     allow_blank: true
   }
 
-  def password=(raw_password)
-    if raw_password.kind_of?(String)
-      self.hashed_password = BCrypt::Password.create(raw_password)
-    elsif raw_password.nil?
-      self.hashed_password = nil
-    end
-  end
 end

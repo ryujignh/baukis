@@ -13,6 +13,7 @@
 
 class StaffMember < ActiveRecord::Base
   include EmailHolder
+  include PasswordHolder
   include PersonalNameHolder
 
   has_many :events, class_name: 'StaffEvent', dependent: :destroy
@@ -29,14 +30,6 @@ class StaffMember < ActiveRecord::Base
     before: -> (obj) { 1.year.from_now.to_date },
     allow_blank: true
   }
-
-  def password=(raw_password)
-    if raw_password.kind_of?(String)
-      self.hashed_password = BCrypt::Password.create(raw_password)
-    elsif raw_password.nil?
-      self.hashed_password = nil
-    end
-  end
 
   def active?
     # Not suspend AND Start date is prior to today AND
