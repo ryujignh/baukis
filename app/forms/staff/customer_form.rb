@@ -2,7 +2,7 @@ class Staff::CustomerForm
   include ActiveModel::Model
 
   attr_accessor :customer
-  delegate :persisted?, to: :customer
+  delegate :persisted?, :save, to: :customer
 
   def initialize(customer = nil)
     @customer = customer
@@ -21,10 +21,12 @@ class Staff::CustomerForm
   def save
     # transactionはデータ処理がすべて完了、すべて失敗のいずれかになる
     # のを保証している。
-    ActiveRecord::Base.transaction do
-      customer.save!
-      customer.home_address.save!
-      customer.work_address.save!
+    if valid?
+      ActiveRecord::Base.transaction do
+        customer.save!
+        customer.home_address.save!
+        customer.work_address.save!
+      end
     end
   end
 
