@@ -27,7 +27,7 @@
       <td><%= p.gender %></td>
       <td class="actions">
         <%= link_to '詳細', [ :staff, c ] %> |
-        <%= link_to '編集', [ :edit, :staff, c ] %> |
+        <%= link_to '編集', [ :edit, :staff, c ], data: { no_turbolink: true } %> |
         <%= link_to '削除', [ :staff, c ], method: :delete, data: { confirm: '本当に削除しますか?' } %>
       </td>
     </tr>
