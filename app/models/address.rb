@@ -1,3 +1,20 @@
+# +---------------+--------------+------+-----+---------+----------------+
+# | Field         | Type         | Null | Key | Default | Extra          |
+# +---------------+--------------+------+-----+---------+----------------+
+# | id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+# | customer_id   | int(11)      | NO   | MUL | NULL    |                |
+# | type          | varchar(255) | NO   | MUL | NULL    |                |
+# | postal_code   | varchar(255) | NO   |     | NULL    |                |
+# | prefecture    | varchar(255) | NO   | MUL | NULL    |                |
+# | city          | varchar(255) | NO   | MUL | NULL    |                |
+# | address1      | varchar(255) | NO   |     | NULL    |                |
+# | address2      | varchar(255) | NO   |     | NULL    |                |
+# | company_name  | varchar(255) | NO   |     |         |                |
+# | division_name | varchar(255) | NO   |     |         |                |
+# | created_at    | datetime     | YES  |     | NULL    |                |
+# | updated_at    | datetime     | YES  |     | NULL    |                |
+# +---------------+--------------+------+-----+---------+----------------+
+
 class Address < ActiveRecord::Base
   include StringNormalizer
 

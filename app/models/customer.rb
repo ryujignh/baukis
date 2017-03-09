@@ -1,3 +1,23 @@
+# +------------------+--------------+------+-----+---------+----------------+
+# | Field            | Type         | Null | Key | Default | Extra          |
+# +------------------+--------------+------+-----+---------+----------------+
+# | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+# | email            | varchar(255) | NO   |     | NULL    |                |
+# | email_for_index  | varchar(255) | NO   | UNI | NULL    |                |
+# | family_name      | varchar(255) | NO   |     | NULL    |                |
+# | family_name_kana | varchar(255) | NO   | MUL | NULL    |                |
+# | given_name       | varchar(255) | NO   |     | NULL    |                |
+# | given_name_kana  | varchar(255) | NO   | MUL | NULL    |                |
+# | gender           | varchar(255) | YES  |     | NULL    |                |
+# | birthday         | date         | YES  |     | NULL    |                |
+# | hashed_password  | varchar(255) | YES  |     | NULL    |                |
+# | created_at       | datetime     | YES  |     | NULL    |                |
+# | updated_at       | datetime     | YES  |     | NULL    |                |
+# | birth_year       | int(11)      | YES  | MUL | NULL    |                |
+# | birth_month      | int(11)      | YES  | MUL | NULL    |                |
+# | birth_mday       | int(11)      | YES  | MUL | NULL    |                |
+# +------------------+--------------+------+-----+---------+----------------+
+
 class Customer < ActiveRecord::Base
   include EmailHolder
   include PasswordHolder
@@ -20,5 +40,13 @@ class Customer < ActiveRecord::Base
     before: -> (obj) { Date.today },
     allow_blank: true
   }
+
+  before_save do
+    if birthday
+      self.birth_year = birthday.year
+      self.birth_month = birthday.month
+      self.birth_mday = birthday.mday
+    end
+  end
 
 end

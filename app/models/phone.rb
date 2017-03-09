@@ -1,3 +1,16 @@
+# +------------------+--------------+------+-----+---------+----------------+
+# | Field            | Type         | Null | Key | Default | Extra          |
+# +------------------+--------------+------+-----+---------+----------------+
+# | id               | int(11)      | NO   | PRI | NULL    | auto_increment |
+# | customer_id      | int(11)      | NO   | MUL | NULL    |                |
+# | address_id       | int(11)      | YES  | MUL | NULL    |                |
+# | number           | varchar(255) | NO   |     | NULL    |                |
+# | number_for_index | varchar(255) | NO   | MUL | NULL    |                |
+# | primary          | tinyint(1)   | NO   |     | 0       |                |
+# | created_at       | datetime     | YES  |     | NULL    |                |
+# | updated_at       | datetime     | YES  |     | NULL    |                |
+# +------------------+--------------+------+-----+---------+----------------+
+
 class Phone < ActiveRecord::Base
   include StringNormalizer
 
