@@ -4,7 +4,7 @@ class Staff::CustomerSearchForm
 
   attr_accessor :family_name_kana, :given_name_kana,
     :birth_year, :birth_month, :birth_mday, :gender,
-    :address_type, :prefecture, :city, :phone_number
+    :address_type, :prefecture, :city, :postal_code, :phone_number
 
   def search
     normalize_values
@@ -24,7 +24,7 @@ class Staff::CustomerSearchForm
 
     # もし都道府県か都市がparamsに含まれていれば、
     # address_typeによって、返す住所を特定する
-    if prefecture.present? || city.present?
+    if prefecture.present? || city.present? || postal_code.present?
       case address_type
       when 'home'
         rel = rel.joins(:home_address)
@@ -39,6 +39,9 @@ class Staff::CustomerSearchForm
         rel = rel.where('addresses.prefecture' => prefecture)
       end
       rel = rel.where('addresses.city' => city) if city.present?
+      # if postal_code.present?
+      #   rel = rel.where('addresses.postal_code' => postal_code)
+      # end
     end
 
     if phone_number.present?
@@ -56,5 +59,6 @@ class Staff::CustomerSearchForm
     self.city = normalize_as_name(city)
     self.phone_number = normalize_as_phone_number(phone_number)
       .try(:gsub, /\D/, '')
+    # self.postal_code = normalize_as_postal_code(postal_code)
   end
 end

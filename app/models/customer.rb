@@ -25,7 +25,7 @@ class Customer < ActiveRecord::Base
   # autosave: true or falseで親モデルが保存した時にhas...関連
   # 付けられているモデルを更新するか決められる。
   # 基本的に更新しないほうがいい（思いがけない処理をする場合があるので）
-  has_one :addresses, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_one :home_address, autosave: true
   has_one :work_address, autosave: true
 
