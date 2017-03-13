@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312231224) do
+ActiveRecord::Schema.define(version: 20170312233901) do
 
   create_table "addresses", force: true do |t|
     t.integer  "customer_id",                null: false
@@ -84,10 +84,12 @@ ActiveRecord::Schema.define(version: 20170312231224) do
     t.boolean  "primary",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_four_digits"
   end
 
   add_index "phones", ["address_id"], name: "index_phones_on_address_id", using: :btree
   add_index "phones", ["customer_id"], name: "index_phones_on_customer_id", using: :btree
+  add_index "phones", ["last_four_digits"], name: "index_phones_on_last_four_digits", using: :btree
   add_index "phones", ["number_for_index"], name: "index_phones_on_number_for_index", using: :btree
 
   create_table "staff_events", force: true do |t|
